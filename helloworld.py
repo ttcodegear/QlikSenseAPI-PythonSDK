@@ -16,8 +16,8 @@ from qlik_sdk.apis.Qix import (
   NxPage
 )
 
-host = "https://xxxx.yy.qlikcloud.com"
-api_key = "eyJhbGc...."
+host = 'https://xxxx.yy.qlikcloud.com'
+api_key = 'eyJhbGc....'
 config = Config(host=host, auth_type=AuthType.APIKey, api_key=api_key)
 qlik = Qlik(config)
 
@@ -89,6 +89,7 @@ try:
     listener = listobjectChanged
   )
   getAllList(lo_width, lo_height, 0)
+  app.destroy_session_object(lo_hypercube.qGenericId)
 
   hypercube_def = GenericObjectProperties(
     qInfo = NxInfo(
@@ -169,6 +170,7 @@ try:
     listener = hypercubeChanged
   )
   getAllData(hc_width, hc_height, 0)
+  app.destroy_session_object(hc_hypercube.qGenericId)
 
   #testok = field.select_values([FieldValue(qText = '関東支店')])
   #print(testok)
