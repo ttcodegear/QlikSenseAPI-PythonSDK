@@ -60,6 +60,7 @@ try:
   def renderingList() -> None:
     hc = lo_layout.qListObject
     allListPages = hc.qDataPages
+    print(hc.qDimensionInfo.qFallbackTitle)
     for p in allListPages:
       for r in range(len(p.qMatrix)):
         for c in range(len(p.qMatrix[r])):
@@ -67,7 +68,7 @@ try:
           field_data = str(cell.qElemNumber) + ','
           if cell.qState=='S':
             field_data += '(Selected)'
-          if cell.qElemNumber == -2:
+          if cell.qElemNumber == -2: # -2: the cell is a Null cell.
             field_data += '-'
           elif cell.qNum is not None and not cell.qNum == 'NaN':
             field_data += str(cell.qNum)
@@ -143,12 +144,16 @@ try:
   def renderingHyperCube() -> None:
     hc = hc_layout.qHyperCube
     allListPages = hc.qDataPages
+    for dim in hc.qDimensionInfo:
+      print(dim.qFallbackTitle)
+    for mes in hc.qMeasureInfo:
+      print(mes.qFallbackTitle)
     for p in allListPages:
       for r in range(len(p.qMatrix)):
         for c in range(len(p.qMatrix[r])):
           cell = p.qMatrix[r][c]
           field_data = ''
-          if cell.qElemNumber == -2:
+          if cell.qElemNumber == -2: # -2: the cell is a Null cell.
             field_data += '-'
           elif cell.qText is not None:
             field_data += cell.qText
@@ -171,10 +176,6 @@ try:
   )
   getAllData(hc_width, hc_height, 0)
   app.destroy_session_object(hc_hypercube.qGenericId)
-
-  #testok = field.select_values([FieldValue(qText = '関東支店')])
-  #print(testok)
-  #time.sleep(10)
 except Exception as e:
   print(e)
 finally:
