@@ -2,4 +2,13 @@
 
 pip install qlik-sdk
 
-python helloworld.py
+pip list
+
+Package                Version
+
+---------------------- -----------
+
+qlik-sdk               0.17.0
+
+
+python ./helloworld.py
