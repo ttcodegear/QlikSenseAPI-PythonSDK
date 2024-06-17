@@ -17,7 +17,7 @@ from qlik_sdk.apis.Qix import (
 )
 
 host = 'https://xxxx.yy.qlikcloud.com'
-api_key = 'eyJhbGc....'
+api_key = 'eyJhbGci....'
 config = Config(host=host, auth_type=AuthType.APIKey, api_key=api_key)
 qlik = Qlik(config)
 
@@ -54,9 +54,16 @@ try:
     lo_layout.qListObject.qDataPages.append(dataPages[0])
     n = len(dataPages[0].qMatrix)
     if lr + n >= lo_layout.qListObject.qSize.qcy:
-      renderingList()
       return
     getAllList(w, h, lr + n)
+  # Register an event listener for change events
+  def listobjectChanged() -> None:
+    print('listobject has beed changed.')
+    #lo_layout = lo_hypercube.get_layout()
+    #lo_layout.qListObject.qDataPages = []
+    #getAllList(lo_width, lo_height, 0)
+    return
+  lo_hypercube.on(event_name = 'changed', listener = listobjectChanged)
   def renderingList() -> None:
     hc = lo_layout.qListObject
     allListPages = hc.qDataPages
@@ -78,18 +85,8 @@ try:
             field_data += ''
           print(field_data)
     return
-  # Register an event listener for change events
-  def listobjectChanged() -> None:
-    print('listobject has beed changed.')
-    #lo_layout = lo_hypercube.get_layout()
-    #lo_layout.qListObject.qDataPages = []
-    #getAllList(lo_width, lo_height, 0)
-    return
-  lo_hypercube.on(
-    event_name = 'changed',
-    listener = listobjectChanged
-  )
   getAllList(lo_width, lo_height, 0)
+  renderingList()
   app.destroy_session_object(lo_hypercube.qGenericId)
 
   hypercube_def = GenericObjectProperties(
@@ -138,9 +135,16 @@ try:
     hc_layout.qHyperCube.qDataPages.append(dataPages[0])
     n = len(dataPages[0].qMatrix)
     if lr + n >= hc_layout.qHyperCube.qSize.qcy:
-      renderingHyperCube()
       return
     getAllData(w, h, lr + n)
+  # Register an event listener for change events
+  def hypercubeChanged() -> None:
+    print('hypercube has beed changed.')
+    #hc_layout = hc_hypercube.get_layout()
+    #hc_layout.qHyperCube.qDataPages = []
+    #getAllList(hc_width, hc_height, 0)
+    return
+  hc_hypercube.on(event_name = 'changed', listener = hypercubeChanged)
   def renderingHyperCube() -> None:
     hc = hc_layout.qHyperCube
     allListPages = hc.qDataPages
@@ -163,18 +167,8 @@ try:
             field_data += ''
           print(field_data)
     return
-  # Register an event listener for change events
-  def hypercubeChanged() -> None:
-    print('hypercube has beed changed.')
-    #hc_layout = hc_hypercube.get_layout()
-    #hc_layout.qHyperCube.qDataPages = []
-    #getAllList(hc_width, hc_height, 0)
-    return
-  hc_hypercube.on(
-    event_name = 'changed',
-    listener = hypercubeChanged
-  )
   getAllData(hc_width, hc_height, 0)
+  renderingHyperCube()
   app.destroy_session_object(hc_hypercube.qGenericId)
 except Exception as e:
   print(e)
