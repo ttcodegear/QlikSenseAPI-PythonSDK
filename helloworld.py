@@ -25,9 +25,9 @@ appid = '72a3da4b-1093-4c4c-840d-1ee44fbcbb91'
 app = qlik.apps.get(appid)
 app.open(qNoData = False)
 try:
+  app.clear_all
   field = app.get_field('支店名')
   select_ok = field.select_values([FieldValue(qText = '関東支店'), FieldValue(qText = '関西支店')])
-  #print(select_ok)
 
   listobject_def = GenericObjectProperties(
     qInfo = NxInfo(
