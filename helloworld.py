@@ -1,4 +1,3 @@
-
 import math #, asyncio, time
 from qlik_sdk import (Config, AuthType, Qlik)
 from qlik_sdk.apis.Qix import (
@@ -18,7 +17,7 @@ from qlik_sdk.apis.Qix import (
 )
 
 host = 'https://xxxx.yy.qlikcloud.com'
-api_key = "eyJhbGci...."
+api_key = 'eyJhbGci....'
 config = Config(host=host, auth_type=AuthType.APIKey, api_key=api_key)
 qlik = Qlik(config)
 
