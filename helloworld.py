@@ -1,3 +1,4 @@
+
 import math #, asyncio, time
 from qlik_sdk import (Config, AuthType, Qlik)
 from qlik_sdk.apis.Qix import (
@@ -17,7 +18,7 @@ from qlik_sdk.apis.Qix import (
 )
 
 host = 'https://xxxx.yy.qlikcloud.com'
-api_key = 'eyJhbGci....'
+api_key = "eyJhbGci...."
 config = Config(host=host, auth_type=AuthType.APIKey, api_key=api_key)
 qlik = Qlik(config)
 
@@ -25,7 +26,7 @@ appid = '72a3da4b-1093-4c4c-840d-1ee44fbcbb91'
 app = qlik.apps.get(appid)
 app.open(qNoData = False)
 try:
-  app.clear_all
+  app.clear_all()
   field = app.get_field('支店名')
   select_ok = field.select_values([FieldValue(qText = '関東支店'), FieldValue(qText = '関西支店')])
 
