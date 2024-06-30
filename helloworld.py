@@ -35,11 +35,11 @@ try:
     ),
     qListObjectDef = ListObjectDef(
       qDef = NxInlineDimensionDef(
-        qFieldDefs = ["支店名"],
-        qFieldLabels = ["支店名"],
+        qFieldDefs = ['支店名'],
+        qFieldLabels = ['支店名'],
         qSortCriterias = [SortCriteria(qSortByLoadOrder = 1)]
       ),
-      qFrequencyMode = "NX_FREQUENCY_VALUE",
+      qFrequencyMode = 'NX_FREQUENCY_VALUE',
       qShowAlternatives = True
     )
   )
@@ -96,8 +96,8 @@ try:
     qHyperCubeDef = HyperCubeDef(
       qDimensions = [NxDimension(
         qDef = NxInlineDimensionDef(
-          qFieldDefs = ["営業員名"],
-          qFieldLabels = ["営業員名"]
+          qFieldDefs = ['営業員名'],
+          qFieldLabels = ['営業員名']
         ),
         qNullSuppression = True
       )],
@@ -105,7 +105,7 @@ try:
         qDef = NxInlineMeasureDef(
           qDef = 'Sum([販売価格])',
           qLabel = '実績',
-          qNumFormat = FieldAttributes(qType = "MONEY", qUseThou = 1, qThou = ',')
+          qNumFormat = FieldAttributes(qType = 'MONEY', qUseThou = 1, qThou = ',')
         ),
         qSortBy = SortCriteria(
           qSortByState = 0,
@@ -119,9 +119,9 @@ try:
       )],
       qSuppressZero = False,
       qSuppressMissing = False,
-      qMode = "DATA_MODE_STRAIGHT",
+      qMode = 'DATA_MODE_STRAIGHT',
       qInterColumnSortOrder = [1,0], # ソート順: 1=実績, 0=営業員名
-      qStateName = "$"
+      qStateName = '$'
     )
   )
   hc_hypercube = app.create_session_object(hypercube_def)
