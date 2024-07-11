@@ -147,12 +147,12 @@ try:
   hc_hypercube.on(event_name = 'changed', listener = hypercubeChanged)
   def renderingHyperCube() -> None:
     hc = hc_layout.qHyperCube
-    allListPages = hc.qDataPages
+    allDataPages = hc.qDataPages
     for dim in hc.qDimensionInfo:
       print(dim.qFallbackTitle)
     for mes in hc.qMeasureInfo:
       print(mes.qFallbackTitle)
-    for p in allListPages:
+    for p in allDataPages:
       for r in range(len(p.qMatrix)):
         for c in range(len(p.qMatrix[r])):
           cell = p.qMatrix[r][c]
